@@ -1,5 +1,30 @@
 def find_balanced_subsequence(art_pieces):
-    pass
+    freq = {}
+    arr = []
+    max_sum = 0
+
+    for x in art_pieces:
+        if x in freq:
+            freq[x] += 1
+        else:
+            freq[x] = 1
+
+    for key in freq.keys():
+        arr.append(key)
+    arr.sort()
+    
+    for i in range(len(arr) - 1):
+        if arr[i+1] - arr[i] == 1:
+            temp = freq[arr[i]] + freq[arr[i+1]]
+            if temp > max_sum:
+                max_sum = temp
+    
+    return max_sum
+            
+        
+
+
+
 
 
 
