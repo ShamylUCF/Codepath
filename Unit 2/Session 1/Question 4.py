@@ -1,32 +1,30 @@
 def is_balanced(code):
-    code_dictionary = {}
-    totals = {}
-    finding_val = 0
+    freq = {}
+    freq_of_values = {}
 
     for x in code:
-        if x in code_dictionary:
-            code_dictionary[x] += 1
+        if x in freq:
+            freq[x] += 1
         else:
-            code_dictionary[x] = 1
+            freq[x] = 1
 
-    for key,value in code_dictionary.items():
-        if value in totals:
-            totals[value] += 1
+    for value in freq.values():
+        if value in freq_of_values:
+            freq_of_values[value] += 1
         else:
-            totals[value] = 1
+            freq_of_values[value] = 1
     
-    print(totals)
-
-    if len(totals) != 2:
+    print(freq_of_values)
+    
+    if len(freq_of_values) == 1:
         return False
-    
-    if totals.keys() > totals[1] and  totals[0] - 1 == totals[1]:
-        return True
-    
-    if (totals[1] > totals[0]) and  (totals[1] - 1 == totals[0]):
-        return True
-    
-    return False
+    if len(freq_of_values) == 2:
+        for x in freq_of_values:
+            if freq_of_values[x] == 1:
+                return True
+        return False 
+    if len(freq_of_values) > 2:
+        return False
 
 
 code1 = "arghh"
